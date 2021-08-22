@@ -75,7 +75,7 @@ public:
 }; // end of class matranvuong
 
  int main(){
-
+int temp;
 	 matranvuong *matran = new matranvuong();
 	matran->setSize(4);
 	cout<< matran->getSize()<<endl;
@@ -87,5 +87,6 @@ public:
 	cout<< matran->tongCheoPhu();
 	 matran->giaiPhong();
 
+	cin>>temp;
 	 
 }
