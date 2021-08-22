@@ -119,10 +119,11 @@ public class CtrucDulieu
         list.AddLast(6);
         printList(list);
         // Sắp xếp
-        Console.WriteLine("Sắp xếp nổi bọt");
+        Console.WriteLine("Thuật toán sắp xếp nổi bọt");
         bubbleSort(list);
         printList(list);
         
-
+        
+        // ALO ALO ALo
     } // end of Main
 } // end of class CtrucDulieu
