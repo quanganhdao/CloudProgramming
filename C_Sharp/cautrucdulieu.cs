@@ -1,4 +1,4 @@
-using System.Xml.Xsl.Runtime;
+
 using System;
 using System.Collections.Generic;
 
@@ -75,84 +75,98 @@ public class CtrucDulieu
         Console.WriteLine("------------------------");
     } // end of printList
 
-    public static void bubbleSort(LinkedList<int> list){
+    public static void bubbleSort(LinkedList<int> list)
+    {
         int temp;
-        for(int i=0; i<list.Count-2;i++){
-            for(LinkedListNode<int> node = list.First;node.Next!=null;node=node.Next){
-                if(node.Value >node.Next.Value){
-                    temp= node.Value;
+        for (int i = 0; i < list.Count - 2; i++)
+        {
+            for (LinkedListNode<int> node = list.First; node.Next != null; node = node.Next)
+            {
+                if (node.Value > node.Next.Value)
+                {
+                    temp = node.Value;
                     node.Value = node.Next.Value;
-                    node.Next.Value =temp;
+                    node.Next.Value = temp;
                 }
             }
         }
     }
 
 
-// Thuat toan tìm kiếm nhị phân
+    // Thuat toan tìm kiếm nhị phân
 
-    static int binarySearch(LinkedList<int> list, int value){
-        LinkedListNode<int> node= new LinkedListNode<int>(100);
-        node =list.First;
+    static int binarySearch(LinkedList<int> list, int value)
+    {
+        LinkedListNode<int> node = new LinkedListNode<int>(100);
+        node = list.First;
         int tail = list.Count;
-        int head =1;
-        int tracker=head;
-            while(head<=tail){
-                int middle = (tail+head)/2;
-                if(middle==tracker){
-                    if(value>node.Value){
-                        head=middle+1;
-                        tracker= head;
-                        node=node.Next;
-                        continue;
-                    } else if(value<node.Value){
-                        tail= middle-1;
-                        tracker= 1;
-                        node = list.First;
-                        continue;
-                    } else return 1;
+        int head = 1;
+        int tracker = head;
+        while (head <= tail)
+        {
+            int middle = (tail + head) / 2;
+            if (middle == tracker)
+            {
+                if (value > node.Value)
+                {
+                    head = middle + 1;
+                    tracker = head;
+                    node = node.Next;
+                    continue;
                 }
-
-                tracker ++;
-                node = node.Next;
-
+                else if (value < node.Value)
+                {
+                    tail = middle - 1;
+                    tracker = 1;
+                    node = list.First;
+                    continue;
+                }
+                else return 1;
             }
-            return 0; // không tìm thấy
+
+            tracker++;
+            node = node.Next;
+
+        }
+        return 0; // không tìm thấy
     } // end of " binarySearch"
 
-    
-    static int binarySearch(int[] arr, int left, int right, int x) {
-    int middle;
- 
-    while(left <= right) {
-        // Lấy vị trí ở giữa left và right
-        middle = (left + right) / 2;
- 
-        // Nếu phần từ ở giữa bằng x thì trả về
-        // vị trí
-        if (arr[middle] == x)
-            return middle;
- 
-        // Nếu x lớn hơn phần tử ở giữa thì
-        // chắc chắn nó nằm bên phải.
-        // Chỉ định left phần từ ở giữa + 1
-        if (x > arr[middle])
-            left = middle + 1;
-        else
-            //Ngược lại
-            right = middle - 1;
+
+    static int binarySearch(int[] arr, int left, int right, int x)
+    {
+        int middle;
+
+        while (left <= right)
+        {
+            // Lấy vị trí ở giữa left và right
+            middle = (left + right) / 2;
+
+            // Nếu phần từ ở giữa bằng x thì trả về
+            // vị trí
+            if (arr[middle] == x)
+                return middle;
+
+            // Nếu x lớn hơn phần tử ở giữa thì
+            // chắc chắn nó nằm bên phải.
+            // Chỉ định left phần từ ở giữa + 1
+            if (x > arr[middle])
+                left = middle + 1;
+            else
+                //Ngược lại
+                right = middle - 1;
+        }
+
+        //Trả về -1 nếu không tìm thấy gía trị trong mảng.
+        return 0;
     }
- 
-    //Trả về -1 nếu không tìm thấy gía trị trong mảng.
-    return 0;
-}
 
-// Copy LinkedList sang một mảng 1 chiều
-    public static int[] copyToArray(LinkedList<int> list ){
-        int []array =new int[list.Count];
-        list.CopyTo(array,0);
+    // Copy LinkedList sang một mảng 1 chiều
+    public static int[] copyToArray(LinkedList<int> list)
+    {
+        int[] array = new int[list.Count];
+        list.CopyTo(array, 0);
 
-     return array;
+        return array;
     }
     public static void Main(string[] args)
     {
@@ -181,23 +195,28 @@ public class CtrucDulieu
         printList(list);
         // thử thay đổi THÔNG TIN 1 node 
         // Thêm 1 số phần tử vào cho việc sắp xếp
+        Console.WriteLine("Them 1 so phan tu vao danh sach: ");
         list.AddLast(20);
         list.AddLast(6);
         list.AddFirst(76);
         list.AddLast(23);
         printList(list);
-        // Sắp xếp
-        Console.WriteLine("Thuật toán sắp xếp nổi bọt");
+        // Sắp xếp nổi bọt
+        Console.WriteLine("Bubble sort: ");
         bubbleSort(list);
         printList(list);
 
         // int [] array = copyToArray(list);
         // int k=binarySearch(array,0,list.Count-1, 24);
-        int k= binarySearch(list,23);
-        if(k ==0){
-            Console.WriteLine("khong tim thay :(");
-        } else Console.WriteLine("Tim thay roi!!!");
 
-        
+        int value = 25; // giá trị cần tìm kiếm
+        int k = binarySearch(list, value);
+        if (k == 0)
+        {
+            Console.WriteLine($"khong tim thay gia tri {value} :(");
+        }
+        else Console.WriteLine($"Tim thay gia tri {value} roi!!! :)");
+
+
     } // end of Main
 } // end of class CtrucDulieu
