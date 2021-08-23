@@ -213,7 +213,7 @@ public class CtrucDulieu
         int k = binarySearch(list, value);
         if (k == 0)
         {
-            Console.WriteLine($"khong tim thay gia tri {value} :(");
+            Console.WriteLine($"khong tim thay gia {value} :(");
         }
         else Console.WriteLine($"Tim thay gia tri {value} roi!!! :)");
 
